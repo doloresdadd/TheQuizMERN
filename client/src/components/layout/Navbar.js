@@ -16,6 +16,7 @@ const MyNavbar = () => {
               <span> The Quiz</span>
             </Link>
           }
+          className="indigo"
           id="mobile-nav"
           menuIcon={<Icon>menu</Icon>}
           options={{

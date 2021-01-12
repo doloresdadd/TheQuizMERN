@@ -1,75 +1,59 @@
 import React, { Fragment } from "react";
+import { Button } from "react-materialize";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
     <Fragment>
-      <div class="section center-align">
-        <div class="row">
+      <div className="section center-align">
+        <div className="row">
           <h3>Register</h3>
         </div>
       </div>
-      <div class="section valign-wrapper center-align">
-        <div class="row">
-          <div class="col s12 m12 l12 center-align">
-            <div class="card login-container center-align">
-              <div class="card-content">
+      <div className="section valign-wrapper center-align">
+        <div className="row">
+          <div className="col s12 m12 l12 center-align">
+            <div className="card login-container center-align">
+              <div className="card-content">
                 <form action="">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input
-                        placeholder="Username"
-                        id="username"
-                        type="text"
-                        class="validate"
-                      />
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input id="username" type="text" className="validate" />
                       <label for="email">Username</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input
-                        placeholder="Email"
-                        id="email"
-                        type="email"
-                        class="validate"
-                      />
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input id="email" type="email" className="validate" />
                       <label for="email">Email</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input
-                        placeholder="Password"
-                        type="password"
-                        class="validate"
-                      />
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input type="password" className="validate" />
                       <label for="password">Password</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input
-                        placeholder="Confirm Password"
-                        type="password"
-                        class="validate"
-                      />
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input type="password" className="validate" />
                       <label for="password">Confirm Password</label>
                     </div>
                   </div>
-                  <button
-                    class="btn waves-effect waves-light btn-large center-align submitBtn deep-purple lighten-5 black-text"
+                  <Button
+                    className="btn waves-effect waves-light btn-large center-align submitBtn indigo white-text"
                     type="submit"
                     name="action"
                     id="submit"
                   >
                     Submit
-                  </button>
+                  </Button>
                 </form>
               </div>
-              <div class="card-action center-align">
-                <a href="register.html">
-                  Already registered? Click here to login.
-                </a>
+              <div className="card-action center-align">
+                <Link className="indigo-text" href="/login">
+                  Already registered? Click here to login
+                </Link>
               </div>
             </div>
           </div>

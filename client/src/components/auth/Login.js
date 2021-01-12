@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "react-materialize";
 
 const Login = () => {
   return (
@@ -18,38 +19,29 @@ const Login = () => {
                 <form action="">
                   <div className="row">
                     <div className="input-field col s12">
-                      <input
-                        placeholder="Email"
-                        id="email"
-                        type="email"
-                        className="validate"
-                      />
+                      <input id="email" type="email" className="validate" />
                       <label for="email">Email</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input
-                        placeholder="Password"
-                        type="password"
-                        className="validate"
-                      />
+                      <input type="password" className="validate" />
                       <label for="password">Password</label>
                     </div>
                   </div>
-                  <button
-                    className="btn waves-effect waves-light btn-large center-align submitBtn deep-purple lighten-5 black-text"
+                  <Button
+                    className="btn waves-effect waves-light btn-large center-align submitBtn indigo white-text"
                     type="submit"
                     name="action"
                     id="submit"
                   >
                     Submit
-                  </button>
+                  </Button>
                 </form>
               </div>
               <div className="card-action center-align">
-                <Link to="/register">
-                  Don't have a login? Click here to register.
+                <Link className="indigo-text" to="/register">
+                  Don't have a login? Click here to register
                 </Link>
               </div>
             </div>

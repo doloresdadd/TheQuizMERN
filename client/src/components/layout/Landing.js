@@ -31,8 +31,9 @@ const Landing = () => {
       </div>
       <div className="row">
         <h5>Create your own quiz</h5>
+        <br />
         <Link to="/createquiz">
-          <Button>Create Quiz</Button>
+          <Button className="indigo">Create Quiz</Button>
         </Link>
       </div>
     </div>
