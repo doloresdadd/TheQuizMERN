@@ -1,8 +1,24 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-materialize";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const onchange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async e => {
+    e.preventDefault();
+
+    console.log("success");
+  };
+
   return (
     <Fragment>
       <div className="section center-align">
@@ -16,17 +32,33 @@ const Login = () => {
           <div className="col s12 m12 l12 center-align">
             <div className="card login-container center-align">
               <div className="card-content">
-                <form action="">
+                <form
+                  className="form"
+                  action="login-user"
+                  onSubmit={e => onSubmit(e)}
+                >
                   <div className="row">
                     <div className="input-field col s12">
-                      <input id="email" type="email" className="validate" />
-                      <label for="email">Email</label>
+                      <input
+                        name="email"
+                        type="email"
+                        value={email}
+                        onChange={e => onchange(e)}
+                        required
+                      />
+                      <label htmlFor="email">Email</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input type="password" className="validate" />
-                      <label for="password">Password</label>
+                      <input
+                        name="password"
+                        type="password"
+                        value={password}
+                        onChange={e => onchange(e)}
+                        required
+                      />
+                      <label htmlFor="password">Password</label>
                     </div>
                   </div>
                   <Button

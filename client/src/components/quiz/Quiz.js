@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const Quiz = () => {
-  return <div>Quiz</div>;
+  return <Fragment>Quiz</Fragment>;
 };
 
 export default Quiz;

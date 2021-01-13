@@ -8,11 +8,11 @@ const ErrorResponse = require("../utils/errorResponse");
 // @route   POST /api/v1/auth/register
 // @access  Public
 exports.register = asyncHandler(async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { username, email, password, role } = req.body;
 
   //Create User
   const user = await User.create({
-    name,
+    username,
     email,
     password,
     role,

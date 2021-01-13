@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const FindQuiz = () => {
-  return <div>FindQuiz</div>;
+  return <Fragment>Browse quizzes</Fragment>;
 };
 
 export default FindQuiz;

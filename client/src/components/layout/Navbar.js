@@ -32,12 +32,8 @@ const MyNavbar = () => {
           }}
           sidenav={<li>Custom node!</li>}
         >
-          <NavItem>
-            <Link to="/">Quizzes</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/login">Login</Link>
-          </NavItem>
+          <NavItem>{/* <Link to="/">Quizzes</Link> */}</NavItem>
+          <NavItem>{/* <Link to="/login">Login</Link> */}</NavItem>
         </Navbar>
       </nav>
     </div>
