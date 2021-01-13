@@ -9,6 +9,8 @@ import Quiz from "./components/quiz/Quiz";
 import CreateQuiz from "./components/quiz/CreateQuiz";
 import FindQuiz from "./components/quiz/FindQuiz";
 
+import Alert from "./components/layout/Alert";
+
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -23,7 +25,7 @@ const App = () => {
           <Navbar />
           <section className="container center-align">
             <Route exact path="/" component={Landing} />
-
+            <Alert />
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
