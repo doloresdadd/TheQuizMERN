@@ -1,7 +1,7 @@
-:root {
-  $danger-color: #dc3545;
-  $success-color: #28a745;
-}
+$danger-color: #b71c1c;
+$success-color: #1b5e20;
+$danger-outline: #9e1c1c;
+$success-outline: #144417;
 
 .App {
   text-align: center;
@@ -50,4 +50,26 @@ nav {
 
 button {
   width: 100%;
+}
+
+.alert {
+  padding: 0.5rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: lightgrey;
+  color: #333;
+}
+
+.alert-danger {
+  background: $danger-color;
+  border: 2px solid $danger-outline;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.alert-success {
+  background: $success-color;
+  border: 2px solid $success-outline;
+  border-radius: 2px;
+  color: #fff;
 }

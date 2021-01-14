@@ -33,7 +33,7 @@
 		"prefix": "mstp",
 		"body": [
 			"const mapStateToProps = state => ({",
-			"'$1': state.'$2'",
+			"$1: state.$2",
 			"});"
 		],
 		"description": "map state to props"

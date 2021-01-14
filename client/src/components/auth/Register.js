@@ -2,11 +2,12 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 
 import { Button } from "react-materialize";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -24,9 +25,13 @@ const Register = ({ setAlert }) => {
     if (password !== password2) {
       setAlert("Passwords do not match", "danger");
     } else {
-      console.log("success");
+      register({ username, email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <Fragment>
@@ -52,7 +57,6 @@ const Register = ({ setAlert }) => {
                         type="text"
                         value={username}
                         onChange={e => onchange(e)}
-                        required
                       />
                       <label htmlFor="username">Username</label>
                     </div>
@@ -64,7 +68,6 @@ const Register = ({ setAlert }) => {
                         type="email"
                         value={email}
                         onChange={e => onchange(e)}
-                        required
                       />
                       <label htmlFor="email">Email</label>
                     </div>
@@ -76,7 +79,6 @@ const Register = ({ setAlert }) => {
                         type="password"
                         value={password}
                         onChange={e => onchange(e)}
-                        required
                       />
                       <label htmlFor="password">Password</label>
                     </div>
@@ -88,7 +90,6 @@ const Register = ({ setAlert }) => {
                         type="password"
                         value={password2}
                         onChange={e => onchange(e)}
-                        required
                       />
                       <label htmlFor="password2">Confirm Password</label>
                     </div>
@@ -119,6 +120,11 @@ const Register = ({ setAlert }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert })(Register);
+const mapStateToProps = state => ({
+  auth: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

@@ -1,43 +1,62 @@
-import React from "react";
-import { Navbar, Icon, NavItem } from "react-materialize";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
+import { Navbar } from "react-materialize";
 
-const MyNavbar = () => {
+const MyNavbar = ({ auth: { isAuthenticated }, logout }) => {
+  const authLinks = (
+    <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <li>
+        <Link to="/">Quizzes</Link>
+      </li>
+      <li>
+        <Link to="/myQuizzes">Quiz Manager</Link>
+      </li>
+      <li>
+        <a onClick={logout} href="#!">
+          Logout
+        </a>
+      </li>
+    </ul>
+  );
+
+  const guestLinks = (
+    <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <li>
+        <Link to="/">Quizzes</Link>
+      </li>
+      <li>
+        <Link to="/login">Login</Link>
+      </li>
+    </ul>
+  );
+
   return (
     <div>
-      <nav>
-        <Navbar
-          alignLinks="right"
-          brand={
-            <Link to="/" className="brand-logo">
-              <FontAwesomeIcon icon={faGraduationCap} />
-              <span> The Quiz</span>
-            </Link>
-          }
-          className="indigo"
-          id="mobile-nav"
-          menuIcon={<Icon>menu</Icon>}
-          options={{
-            draggable: true,
-            edge: "left",
-            inDuration: 250,
-            onCloseEnd: null,
-            onCloseStart: null,
-            onOpenEnd: null,
-            onOpenStart: null,
-            outDuration: 200,
-            preventScrolling: true,
-          }}
-          sidenav={<li>Custom node!</li>}
-        >
-          <NavItem>{/* <Link to="/">Quizzes</Link> */}</NavItem>
-          <NavItem>{/* <Link to="/login">Login</Link> */}</NavItem>
-        </Navbar>
+      <nav className="indigo">
+        <div className="nav-wrapper">
+          <Link to="/" className="brand-logo">
+            <FontAwesomeIcon icon={faGraduationCap} />
+            <span> The Quiz</span>
+          </Link>
+          <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        </div>
       </nav>
     </div>
   );
 };
 
-export default MyNavbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(MyNavbar);
