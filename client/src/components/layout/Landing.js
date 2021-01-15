@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Button } from "react-materialize";
 import { Link } from "react-router-dom";
+import { getQuizzes } from "../../actions/quizzes";
 
-const Landing = () => {
+const Landing = ({ getQuizzes, quizzes }) => {
+  useEffect(() => {
+    getQuizzes();
+  }, []);
   return (
     <div>
       <div className="row">
@@ -40,4 +46,13 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  getQuizzes: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  quizzes: state.quizzes,
+});
+
+export default connect(mapStateToProps, { getQuizzes })(Landing);

@@ -86,7 +86,7 @@ export const login = (email, password) => async dispatch => {
 // Logout User
 export const logout = (email, password) => async dispatch => {
   try {
-    const res = await axios.get("/api/v1/auth/logout");
+    await axios.get("/api/v1/auth/logout");
 
     dispatch({
       type: LOGOUT_SUCCESS,
