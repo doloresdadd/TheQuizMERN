@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { Button } from "react-materialize";
 import { Link } from "react-router-dom";
 import { getQuizzes } from "../../actions/quizzes";
+import Popularity from "./Popularity";
+import Newest from "./Newest";
+import Category from "./Category";
 
 const Landing = ({ getQuizzes, quizzes }) => {
   useEffect(() => {
@@ -15,25 +18,9 @@ const Landing = ({ getQuizzes, quizzes }) => {
         <h1>Welcome To The Quiz</h1>
       </div>
       <div className="row">
-        <div className="col l4 m4 s12 ">
-          <h3>Quizzes by popularity</h3>
-          <p>
-            <span>Quiz name</span> <span> Average score</span>
-          </p>
-        </div>
-
-        <div className="col l4 m4 s12">
-          <h3>Newest quizzes</h3>
-          <p>
-            <span>Quiz name</span> <span> Average score</span>
-          </p>
-        </div>
-        <div className="col l4 m4 s12">
-          <h3>Quizzes by category</h3>
-          <p>
-            <span>Category name</span>
-          </p>
-        </div>
+        <Popularity />
+        <Newest />
+        <Category />
       </div>
       <div className="row">
         <h5>Create your own quiz</h5>
