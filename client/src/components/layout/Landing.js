@@ -8,7 +8,7 @@ import { getQuizzes } from "../../actions/quizzes";
 const Landing = ({ getQuizzes, quizzes }) => {
   useEffect(() => {
     getQuizzes();
-  }, []);
+  }, [getQuizzes]);
   return (
     <div>
       <div className="row">
@@ -48,7 +48,6 @@ const Landing = ({ getQuizzes, quizzes }) => {
 
 Landing.propTypes = {
   getQuizzes: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

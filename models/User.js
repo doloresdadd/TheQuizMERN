@@ -3,38 +3,44 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: [true, "Please add a username"],
+const UserSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: [true, "Please add a username"],
+    },
+    email: {
+      type: String,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Please add a valid email",
+      ],
+      required: [true, "Please add an email"],
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Please add a password"],
+      minlength: 8,
+      select: false,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+    },
   },
-  email: {
-    type: String,
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please add a valid email",
-    ],
-    required: [true, "Please add an email"],
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: [true, "Please add a password"],
-    minlength: 8,
-    select: false,
-  },
-  role: {
-    type: String,
-    enum: ["user", "admin"],
-    default: "user",
-  },
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
-});
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
 
 //Encrypt password using bcrypt
 UserSchema.pre("save", async function (next) {
@@ -73,5 +79,13 @@ UserSchema.methods.getResetPasswordToken = function () {
 
   return resetToken;
 };
+
+// Reverse populate with virtuals
+UserSchema.virtual("quizzes", {
+  ref: "Quiz",
+  localField: "_id",
+  foreignField: "user",
+  justOne: false,
+});
 
 module.exports = mongoose.model("User", UserSchema);

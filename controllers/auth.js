@@ -1,6 +1,7 @@
 const crypto = require("crypto");
 const asyncHandler = require("../middleware/async");
 const User = require("../models/User");
+const Quiz = require("../models/Quiz");
 const sendEmail = require("../utils/sendEmail");
 const ErrorResponse = require("../utils/errorResponse");
 

@@ -9,8 +9,21 @@ const Quiz = require("../models/Quiz");
 exports.getQuizzes = asyncHandler(async (req, res, next) => {
   res.status(200).json(res.advancedResults);
 });
+// exports.getquizzes = asyncHandler(async (req, res, next) => {
+//   if (req.params.userID) {
+//     const quizzes = await Quiz.find({ user: req.params.userId });
 
-// @desc get single quizes
+//     return res.status(200).json({
+//       success: true,
+//       count: quizzes.length,
+//       data: quizzes,
+//     });
+//   } else {
+//     res.status(200).json(res.advancedResults);
+//   }
+// });
+
+// @desc get single quiz
 // @route GET /api/v1/quizzes:id
 // @access Public
 exports.getQuiz = asyncHandler(async (req, res, next) => {
