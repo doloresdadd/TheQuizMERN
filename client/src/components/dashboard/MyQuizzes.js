@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button } from "react-materialize";
 import { getCurrentProfile } from "../../actions/profile";
-import { getQuizzesByProfile } from "../../actions/quizzes";
+
 import QuizList from "./QuizList";
 
 const MyQuizzes = ({
@@ -32,7 +32,7 @@ const MyQuizzes = ({
 
 MyQuizzes.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
-  getQuizzesByProfile: PropTypes.func.isRequired,
+
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -44,5 +44,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   getCurrentProfile,
-  getQuizzesByProfile,
 })(MyQuizzes);

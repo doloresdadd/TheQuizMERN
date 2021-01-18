@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Card } from "react-materialize";
 
-import { getQuizzesByProfile } from "../../actions/quizzes";
-
-const QuizList = ({ getQuizzesByProfile, auth, quizzes }) => {
+const QuizList = ({ auth, quizzes }) => {
   return (
     <Fragment>
       <div className="col s8">
@@ -49,7 +47,6 @@ const QuizList = ({ getQuizzesByProfile, auth, quizzes }) => {
 };
 
 QuizList.propTypes = {
-  getQuizzesByProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
@@ -58,6 +55,4 @@ const mapStateToProps = state => ({
   quizzes: state.quizzes,
 });
 
-export default connect(mapStateToProps, {
-  getQuizzesByProfile,
-})(QuizList);
+export default connect(mapStateToProps, {})(QuizList);

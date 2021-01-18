@@ -11,5 +11,4 @@ export const LOGOUT_FAIL = "LOGOUT_FAIL";
 export const GET_PROFILE = "GET_PROFILE";
 export const PROFILE_ERROR = "PROFILE_ERROR";
 export const GET_QUIZZES = "GET_QUIZZES";
-export const GET_QUIZZES_BY_PROFILE = "GET_QUIZ_BY_PROFILE";
 export const QUIZ_ERROR = "QUIZ_ERROR";
