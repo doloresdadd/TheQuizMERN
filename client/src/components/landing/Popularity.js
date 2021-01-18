@@ -1,39 +1,61 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Table } from "react-materialize";
+import Spinner from "../layout/Spinner";
 
-const Popularity = props => {
+import { connect } from "react-redux";
+
+const Popularity = ({
+  quiz: {
+    quizzes: { count, data },
+  },
+  loading,
+}) => {
+  console.log(count);
   return (
     <Fragment>
-      <div className="col l4 m4 s12 ">
-        <h3>Quizzes by popularity</h3>
-        <Table>
-          <thead>
-            <tr>
-              <th data-field="name">Quiz Name</th>
-              <th data-field="score">Average Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alvin</td>
-              <td>Eclair</td>
-            </tr>
-            <tr>
-              <td>Alan</td>
-              <td>Jellybean</td>
-            </tr>
-            <tr>
-              <td>Jonathan</td>
-              <td>Lollipop</td>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="col l4 m4 s12 ">
+          <h3>Quizzes by popularity</h3>
+          <table className="striped">
+            <thead>
+              <tr>
+                <th>Quiz Name</th>
+
+                <th>Average Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {count > 0 ? (
+                data.map(quiz => (
+                  <tr key={quiz._id}>
+                    <td>
+                      <Link to="/quiz/{quiz._id}">{quiz.title}</Link>
+                    </td>
+
+                    <td>{quiz.averageScore}</td>
+                  </tr>
+                ))
+              ) : (
+                <Fragment> Not Working</Fragment>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </Fragment>
   );
 };
 
-Popularity.propTypes = {};
+Popularity.propTypes = {
+  quiz: PropTypes.object.isRequired,
+};
 
-export default Popularity;
+const mapStateToProps = state => ({
+  loading: state.auth.loading,
+  quiz: state.quiz,
+});
+
+export default connect(mapStateToProps, {})(Popularity);

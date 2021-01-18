@@ -2,11 +2,11 @@ import { combineReducers } from "redux";
 import alert from "./alert";
 import auth from "./auth";
 import profile from "./profile";
-import quizzes from "./quizzes";
+import quiz from "./quizzes";
 
 export default combineReducers({
   alert,
   auth,
   profile,
-  quizzes,
+  quiz,
 });

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button } from "react-materialize";
@@ -7,29 +7,36 @@ import { getQuizzes } from "../../actions/quizzes";
 import Popularity from "./Popularity";
 import Newest from "./Newest";
 import Category from "./Category";
+import Spinner from "../layout/Spinner";
 
-const Landing = ({ getQuizzes, quizzes }) => {
+const Landing = ({ getQuizzes, loading }) => {
   useEffect(() => {
     getQuizzes();
   }, [getQuizzes]);
   return (
-    <div>
-      <div className="row">
-        <h1>Welcome To The Quiz</h1>
-      </div>
-      <div className="row">
-        <Popularity />
-        <Newest />
-        <Category />
-      </div>
-      <div className="row">
-        <h5>Create your own quiz</h5>
-        <br />
-        <Link to="/createquiz">
-          <Button className="indigo">Create Quiz</Button>
-        </Link>
-      </div>
-    </div>
+    <Fragment>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <div className="row">
+            <h1>Welcome To The Quiz</h1>
+          </div>
+          <div className="row">
+            <Popularity />
+            <Newest />
+            <Category />
+          </div>
+          <div className="row">
+            <h5>Create your own quiz</h5>
+            <br />
+            <Link to="/createquiz">
+              <Button className="indigo">Create Quiz</Button>
+            </Link>
+          </div>
+        </Fragment>
+      )}
+    </Fragment>
   );
 };
 
@@ -39,6 +46,7 @@ Landing.propTypes = {
 
 const mapStateToProps = state => ({
   quizzes: state.quizzes,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { getQuizzes })(Landing);

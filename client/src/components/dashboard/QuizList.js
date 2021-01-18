@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Card, Button } from "react-materialize";
+import { Card, Button, Spinner } from "react-materialize";
 import { Link } from "react-router-dom";
 
 const QuizList = ({
@@ -15,7 +15,7 @@ const QuizList = ({
   return (
     <Fragment>
       {loading ? (
-        <h4>Loading</h4>
+        <Spinner />
       ) : (
         <Fragment>
           <div className="col s8">
@@ -32,25 +32,24 @@ const QuizList = ({
                       <th>Average Score</th>
                     </tr>
                   </thead>
-
-                  {quizzes.length > 0 ? (
-                    quizzes.map(quiz => (
-                      <tbody>
-                        <tr key={quiz.id}>
+                  <tbody>
+                    {quizzes.length > 0 ? (
+                      quizzes.map(quiz => (
+                        <tr key={quiz._id}>
                           <td>
-                            <Link to="/quiz/{quiz.id}">{quiz.title}</Link>
+                            <Link to="/quiz/{quiz._id}">{quiz.title}</Link>
                           </td>
                           <td>{quiz.timesPlayed}</td>
                           <td>{quiz.averageScore}</td>
                         </tr>
-                      </tbody>
-                    ))
-                  ) : (
-                    <Fragment>
-                      <h4>You have not created any quizzes yet</h4>
-                      <Button className="indigo">Create New Quiz</Button>
-                    </Fragment>
-                  )}
+                      ))
+                    ) : (
+                      <Fragment>
+                        <h4>You have not created any quizzes yet</h4>
+                        <Button className="indigo">Create New Quiz</Button>
+                      </Fragment>
+                    )}
+                  </tbody>
                 </table>
               </div>
             </Card>
