@@ -17,14 +17,15 @@ const Popularity = ({
       {loading ? (
         <Spinner />
       ) : (
-        <div className="col l4 m4 s12 ">
-          <h3>Quizzes by popularity</h3>
+        <div className="col s12 ">
+          <h3>Most Popular</h3>
           <table className="striped">
             <thead>
               <tr>
                 <th>Quiz Name</th>
 
                 <th>Average Score</th>
+                <th>Times Played</th>
               </tr>
             </thead>
             <tbody>
@@ -36,6 +37,7 @@ const Popularity = ({
                     </td>
 
                     <td>{quiz.averageScore}</td>
+                    <td>{quiz.timesPlayed}</td>
                   </tr>
                 ))
               ) : (

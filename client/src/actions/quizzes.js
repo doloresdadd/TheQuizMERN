@@ -4,9 +4,9 @@ import axios from "axios";
 
 import { GET_QUIZZES, QUIZ_ERROR, GET_QUIZZES_BY_POPULARITY } from "./types";
 
-export const getQuizzes = () => async dispatch => {
+export const getQuizzes = properties => async dispatch => {
   try {
-    const res = await axios.get("/api/v1/quizzes");
+    const res = await axios.get("/api/v1/quizzes" + properties);
     dispatch({
       type: GET_QUIZZES,
       payload: res.data,

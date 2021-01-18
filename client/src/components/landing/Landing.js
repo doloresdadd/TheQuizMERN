@@ -5,13 +5,12 @@ import { Button } from "react-materialize";
 import { Link } from "react-router-dom";
 import { getQuizzes } from "../../actions/quizzes";
 import Popularity from "./Popularity";
-import Newest from "./Newest";
-import Category from "./Category";
+
 import Spinner from "../layout/Spinner";
 
 const Landing = ({ getQuizzes, loading }) => {
   useEffect(() => {
-    getQuizzes();
+    getQuizzes("?sort=-timesPlayed");
   }, [getQuizzes]);
   return (
     <Fragment>
@@ -24,8 +23,6 @@ const Landing = ({ getQuizzes, loading }) => {
           </div>
           <div className="row">
             <Popularity />
-            <Newest />
-            <Category />
           </div>
           <div className="row">
             <h5>Create your own quiz</h5>

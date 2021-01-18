@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+
 import { Table } from "react-materialize";
 
 const Category = props => {
@@ -33,7 +33,5 @@ const Category = props => {
     </Fragment>
   );
 };
-
-Category.propTypes = {};
 
 export default Category;

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+
 import { Table } from "react-materialize";
 
 const Newest = props => {
@@ -33,7 +33,5 @@ const Newest = props => {
     </Fragment>
   );
 };
-
-Newest.propTypes = {};
 
 export default Newest;
