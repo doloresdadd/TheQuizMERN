@@ -35,6 +35,22 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    totalScore: {
+      type: Number,
+      min: [0],
+
+      default: 0,
+    },
+    averageScore: {
+      type: Number,
+      min: [0],
+      max: [100],
+      default: 0,
+    },
+    timesPlayed: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     toJSON: { virtuals: true },
