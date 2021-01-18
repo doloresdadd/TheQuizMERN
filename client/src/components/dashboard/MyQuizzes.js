@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button } from "react-materialize";
 import { getCurrentProfile } from "../../actions/profile";
+import { loadUser } from "../../actions/auth";
 
 import QuizList from "./QuizList";
+import store from "../../store";
 
 const MyQuizzes = ({
   getCurrentProfile,
@@ -14,18 +16,25 @@ const MyQuizzes = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [getCurrentProfile]);
+  }, []);
 
   return (
     <Fragment>
-      <div className="row valign-wrapper" id="content-row">
-        <QuizList />
-        <div className="col s4">
-          <div className="container">
-            <Button className="indigo">Create New Quiz</Button>
+      {auth.loading ? (
+        <h4>Loading</h4>
+      ) : (
+        <Fragment>
+          <div className="row valign-wrapper" id="content-row">
+            <QuizList />
+            <div className="col s4">
+              <div className="container">
+                <Button className="indigo">Create New Quiz</Button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </Fragment>
+      )}
+      ;
     </Fragment>
   );
 };

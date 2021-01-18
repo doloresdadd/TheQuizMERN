@@ -1,47 +1,62 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Card } from "react-materialize";
+import { Card, Button } from "react-materialize";
+import { Link } from "react-router-dom";
 
-const QuizList = ({ auth, quizzes }) => {
+const QuizList = ({
+  auth: {
+    loading,
+    user: {
+      data: { quizzes },
+    },
+  },
+}) => {
   return (
     <Fragment>
-      <div className="col s8">
-        <Card className="white " textClassName="black-text">
-          <div className="row">
-            <span className="card-title">My Quizzes</span>
-          </div>
-          <div className="row">
-            <table className="striped">
-              <thead>
-                <tr>
-                  <th>Quiz Name</th>
-                  <th>Times Played</th>
-                  <th>Average Score</th>
-                </tr>
-              </thead>
+      {loading ? (
+        <h4>Loading</h4>
+      ) : (
+        <Fragment>
+          <div className="col s8">
+            <Card className="white " textClassName="black-text">
+              <div className="row">
+                <span className="card-title">My Quizzes</span>
+              </div>
+              <div className="row">
+                <table className="striped">
+                  <thead>
+                    <tr>
+                      <th>Quiz Name</th>
+                      <th>Times Played</th>
+                      <th>Average Score</th>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
-                  <td>$0.87</td>
-                </tr>
-                <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-                  <td>$3.76</td>
-                </tr>
-                <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-                  <td>$7.00</td>
-                </tr>
-              </tbody>
-            </table>
+                  {quizzes.length > 0 ? (
+                    quizzes.map(quiz => (
+                      <tbody>
+                        <tr key={quiz.id}>
+                          <td>
+                            <Link to="/quiz/{quiz.id}">{quiz.title}</Link>
+                          </td>
+                          <td>{quiz.timesPlayed}</td>
+                          <td>{quiz.averageScore}</td>
+                        </tr>
+                      </tbody>
+                    ))
+                  ) : (
+                    <Fragment>
+                      <h4>You have not created any quizzes yet</h4>
+                      <Button className="indigo">Create New Quiz</Button>
+                    </Fragment>
+                  )}
+                </table>
+              </div>
+            </Card>
           </div>
-        </Card>
-      </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
@@ -52,7 +67,6 @@ QuizList.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  quizzes: state.quizzes,
 });
 
 export default connect(mapStateToProps, {})(QuizList);
