@@ -33,7 +33,7 @@ const Popularity = ({
                 data.map(quiz => (
                   <tr key={quiz._id}>
                     <td>
-                      <Link to="/quiz/{quiz._id}">{quiz.title}</Link>
+                      <Link to={`/quiz/${quiz._id}`}>{quiz.title}</Link>
                     </td>
 
                     <td>{quiz.averageScore}</td>

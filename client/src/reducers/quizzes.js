@@ -1,8 +1,4 @@
-import {
-  GET_QUIZZES,
-  GET_QUIZZES_BY_POPULARITY,
-  QUIZ_ERROR,
-} from "../actions/types";
+import { GET_QUIZZES, GET_QUIZ_BY_ID, QUIZ_ERROR } from "../actions/types";
 
 const initialState = {
   quizzes: null,
@@ -15,7 +11,7 @@ function fetchQuizzes(state = initialState, action) {
 
   switch (type) {
     case GET_QUIZZES:
-    case GET_QUIZZES_BY_POPULARITY:
+    case GET_QUIZ_BY_ID:
       return {
         ...state,
         quizzes: payload,

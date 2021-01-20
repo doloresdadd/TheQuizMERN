@@ -41,6 +41,7 @@ const App = () => {
               <PrivateRoute exact path="/createquiz" component={CreateQuiz} />
               <Route exact path="/quizzes" component={FindQuiz} />
               <PrivateRoute exact path="/myquizzes" component={MyQuizzes} />
+              <Route exact path="/quiz/:_Id" component={Quiz} />
             </Switch>
           </section>
         </Fragment>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // import { setAlert } from "./alert";
 
-import { GET_QUIZZES, QUIZ_ERROR, GET_QUIZZES_BY_POPULARITY } from "./types";
+import { GET_QUIZZES, QUIZ_ERROR, GET_QUIZ_BY_ID } from "./types";
 
 export const getQuizzes = properties => async dispatch => {
   try {
@@ -19,11 +19,11 @@ export const getQuizzes = properties => async dispatch => {
   }
 };
 
-export const getQuizzesByPopularity = () => async dispatch => {
+export const getQuizById = id => async dispatch => {
   try {
-    const res = await axios.get("/api/v1/quizzes?sort=-timesPlayed");
+    const res = await axios.get("/api/v1/quizzes/" + id);
     dispatch({
-      type: GET_QUIZZES_BY_POPULARITY,
+      type: GET_QUIZ_BY_ID,
       payload: res.data,
     });
   } catch (err) {

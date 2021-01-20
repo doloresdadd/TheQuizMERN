@@ -5,7 +5,6 @@ import { Button } from "react-materialize";
 import { Link } from "react-router-dom";
 import { getQuizzes } from "../../actions/quizzes";
 import Popularity from "./Popularity";
-
 import Spinner from "../layout/Spinner";
 
 const Landing = ({ getQuizzes, loading }) => {
