@@ -2,7 +2,7 @@ import { GAME_OVER, ITERATE_QUIZ_QUESTIONS } from "../actions/types";
 
 const initialState = {
   currentQuestion: 1,
-  noOfQuestions: 0,
+  noOfQuestions: 10,
   userScore: 0,
   loading: true,
   error: {},

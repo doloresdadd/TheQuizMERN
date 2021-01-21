@@ -5,14 +5,20 @@ import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
 
 import { getQuizById } from "../../actions/quizzes";
-import Question from "./Question";
 
-const Quiz = ({ getQuizById, quiz }) => {
+import Question from "./Question";
+import GameOver from "./GameOver";
+
+const Quiz = ({ getQuizById, quiz, iterate }) => {
   const { _Id } = useParams();
 
   useEffect(() => {
     getQuizById(_Id);
   }, [_Id, getQuizById]);
+
+  let currentQuestion = iterate.currentQuestion;
+  let quizLength = iterate.noOfQuestions;
+  console.log(currentQuestion, quizLength);
 
   return (
     <Fragment>
@@ -20,7 +26,7 @@ const Quiz = ({ getQuizById, quiz }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <Question />
+          {currentQuestion > quizLength ? <GameOver /> : <Question />}
         </Fragment>
       )}
     </Fragment>
@@ -29,10 +35,14 @@ const Quiz = ({ getQuizById, quiz }) => {
 
 Quiz.propTypes = {
   getQuizById: PropTypes.func.isRequired,
+
+  quiz: PropTypes.object.isRequired,
+  iterate: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   quiz: state.quiz,
+  iterate: state.questions,
 });
 
 export default connect(mapStateToProps, { getQuizById })(Quiz);

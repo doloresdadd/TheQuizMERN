@@ -11,7 +11,6 @@ const Popularity = ({
   },
   loading,
 }) => {
-  console.log(count);
   return (
     <Fragment>
       {loading ? (
@@ -41,7 +40,7 @@ const Popularity = ({
                   </tr>
                 ))
               ) : (
-                <Fragment> Not Working</Fragment>
+                <Fragment> No quizzes available, try again later</Fragment>
               )}
             </tbody>
           </table>

@@ -38,11 +38,11 @@ const Landing = ({ getQuizzes, loading }) => {
 
 Landing.propTypes = {
   getQuizzes: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  quizzes: state.quizzes,
-  loading: state.auth.loading,
+  loading: state.quiz.loading,
 });
 
 export default connect(mapStateToProps, { getQuizzes })(Landing);
